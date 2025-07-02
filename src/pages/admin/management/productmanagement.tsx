@@ -1,5 +1,5 @@
 import { useEffect, useState  } from "react";
-import type { ChangeEvent, FormEvent } from "react";
+import type { FormEvent } from "react";
 import { FaTrash } from "react-icons/fa";
 import AdminSidebar from "../../../components/admin/AdminSidebar";
 import { useProductdetailsQuery, useUpdadteProductsMutation } from "../../../redux/api/product-api";
@@ -11,6 +11,7 @@ import {useDeleteProductsMutation } from "../../../redux/api/product-api";
 import { responseToast } from "../../../utils/features";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { useFileHandler } from "6pp";
 
 
 
@@ -31,52 +32,44 @@ const Productmanagement = () => {
     name: "",
     price: 0,
     stock: 0,
-    photo: "",
+    photos: [{public_id: "" , url: ""}],
     _id: "",
     category: "",
+    ratings: 0,
+    no_of_reviews: 0,
   });
 
-  const {name , price , stock , photo , _id , category}=product;
-
+  const {photos }=product;
+ const [btnloading , setbtnloading] = useState<boolean>(false);
   const [priceUpdate, setPriceUpdate] = useState<number>(0);
   const [stockUpdate, setStockUpdate] = useState<number>(0);
   const [nameUpdate, setNameUpdate] = useState<string>("");
   const [categoryUpdate, setCategoryUpdate] = useState<string>("");
-  const [photoUpdate, setPhotoUpdate] = useState<string>("");
-  const [photoFile, setPhotoFile] = useState<File>();
+  
+  
 
-  const changeImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const file: File | undefined = e.target.files?.[0];
 
-    const reader: FileReader = new FileReader();
-
-    if (file) {
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        if (typeof reader.result === "string") {
-          setPhotoUpdate(reader.result);
-          setPhotoFile(file);
-        }
-      };
-    }
-  };
+ const photoFiles= useFileHandler("multiple" , 5 , 5);
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-   
+    setbtnloading(true);
      const formData = new FormData();
 
      if(nameUpdate) formData.set("name" , nameUpdate);
      if(priceUpdate) formData.set("price" , priceUpdate.toString());
      if(stockUpdate) formData.set("stock" , stockUpdate.toString());
      if(categoryUpdate) formData.set("category" , categoryUpdate);
-     if(photoFile) formData.set("photo" , photoFile);
+     photoFiles.file?.forEach((file)=>formData.append("photos" , file));
 
      try{
        const res= await updateProduct({user_id:user?._id!, product_id:id! , formData});
        responseToast(res , navigate , "/admin/product")
      }catch(error){
        toast.error("Something went wrong");
+     }
+     finally{
+      setbtnloading(false);
      }
   };
 
@@ -97,7 +90,6 @@ const Productmanagement = () => {
       setPriceUpdate(data.product.price);
       setStockUpdate(data.product.stock);
       setCategoryUpdate(data.product.category);
-      setPhotoUpdate(`${import.meta.env.VITE_SERVER_URL}/${data.product.photo}`);
     }
   }, [data]);
 
@@ -107,7 +99,7 @@ const Productmanagement = () => {
       <main className="product-management">
         <section>
           <strong>ID - {product._id}</strong>
-          <img src={`${import.meta.env.VITE_SERVER_URL}/${photo}`} alt="Product" />
+          {photos[0]?.url && <img src={photos[0].url} alt="Product" />}
           <p>{product.name}</p>
           {product.stock > 0 ? (
             <span className="green">{product.stock} Available</span>
@@ -162,11 +154,20 @@ const Productmanagement = () => {
 
             <div>
               <label>Photo</label>
-              <input type="file" onChange={changeImageHandler} />
+              <input type="file" onChange={photoFiles.changeHandler} />
+            </div>
+            {
+              photoFiles.error && <p>{photoFiles.error}</p>
+            }
+            <div style={{display: "flex" , flexDirection: "row" , justifyContent: "stretch" , alignItems: "center"}}>
+              {
+                photoFiles.preview && photoFiles.preview.map((img , ind)=>(
+                  <img   style={{maxWidth: "100px" , marginRight: "10px"}} key={ind} src={img} alt="preview"/>
+                ))
+              }
             </div>
 
-            {photoUpdate && <img src={photoUpdate} alt="New Image" />}
-            <button type="submit">Update</button>
+            <button  className="button" type="submit" disabled={btnloading}>Update</button>
           </form>
         </article>
       </main>

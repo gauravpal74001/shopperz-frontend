@@ -1,5 +1,7 @@
-import { FaPlus } from "react-icons/fa";
+import { FaEye, FaPlus } from "react-icons/fa";
 import type { cartItems } from "../types/types";
+import { Link } from "react-router-dom";
+import { transformImage } from "../utils/features";
 
 type ProductsProps = {
   productId: string;
@@ -26,7 +28,7 @@ const ProductCard = ({
 
   return (
     <div className="product-card">
-      <img src={photo} alt={name} className="product-image" />
+      <img src={transformImage(photo , 1092)} alt={name} className="product-image" />
       <div className="product-info">
         <h3 className="product-name">{name}</h3>
         <span className="product-price">₹{price}</span>
@@ -38,6 +40,9 @@ const ProductCard = ({
         <button onClick={()=>handler({productId, name, price, stock, photo , quantity:1})} disabled={stock === 0}>
           <FaPlus />
         </button>
+        <Link to={`/product/${productId}`}>
+          <FaEye />
+        </Link>
       </div>
     </div>
   );

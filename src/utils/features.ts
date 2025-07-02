@@ -52,4 +52,10 @@ export const getMonthsData =()=>{
 
     return {getsixMonths , gettwelveMonths};
 
-}
+};
+
+export const transformImage = (url:string , width:number )=>{
+    const newUrl = url.replace( "/upload ", `/upload/dpr_auto,f_auto,q_auto,w_${width}`);
+    return newUrl;
+};
+

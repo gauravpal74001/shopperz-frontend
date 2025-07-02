@@ -43,6 +43,8 @@
   @import "_product-card";
   @import "_pay-button";
   @import "_checkout";
+  @import "product-details";
+  @import "footer";
 
   
   @import "admin-styles/dashboard";
@@ -54,6 +56,13 @@
   
   @import "shipping";
   @import "not-found";
+
+  .button{
+    &:disabled{
+      cursor: not-allowed !important;
+      opacity: 0.5;
+    }
+  }
  
   .container{
     max-width: 1376px;
@@ -323,6 +332,19 @@
     to {
       transform: translate(-50%, -20%);
     }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  .skeleton {
+    opacity: 0.7;
   }
 
   

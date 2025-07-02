@@ -8,7 +8,7 @@ import type { RootState } from "../../redux/store";
 import { useDeleteUserMutation, useGetAllUsersQuery } from "../../redux/api/user-api";
 import { toast } from "react-hot-toast";
 import Skeleton from "../../components/skeleton";
-import type { User } from "../../types/types";
+
 
 interface DataType {
   avatar: ReactElement;
@@ -56,35 +56,35 @@ const Customers = () => {
   }   
   const [deleteUser]=useDeleteUserMutation();
   
- const deleteHandler=async (id:string)=>{
+  const deleteHandler=async (id:string)=>{
     await deleteUser({user_id:id, admin_id:user?._id!});
     toast.success( "User deleted successfully");
- }
+  }
 
-useEffect(() => {
-  if (!data?.users) return;
+  useEffect(() => {
+    if (!data?.users) return;
 
-  setRows(
-    data.users.map((i) => ({
-      avatar: (
-        <img
-          style={{ borderRadius: "50%", width: "40px", height: "40px" }}
-          src={i.photo || "https://via.placeholder.com/40"}
-          alt={i.name}
-        />
-      ),
-      name: i.name,
-      email: i.email,
-      gender: i.gender,
-      role: i.role,
-      action: (
-        <button onClick={()=>deleteHandler(i._id)}>
-          <FaTrash />
-        </button>
-      ),
-    }))
-  );
-}, [data]);
+    setRows(
+      data.users.map((i) => ({
+        avatar: (
+          <img
+            style={{ borderRadius: "50%", width: "40px", height: "40px" }}
+            src={i.photo || "https://via.placeholder.com/40"}
+            alt={i.name}
+          />
+        ),
+        name: i.name,
+        email: i.email,
+        gender: i.gender,
+        role: i.role,
+        action: (
+          <button onClick={()=>deleteHandler(i._id)}>
+            <FaTrash />
+          </button>
+        ),
+      }))
+    );
+  }, [data]);
 
   const Table = TableHOC<DataType>(
     columns,

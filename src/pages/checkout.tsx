@@ -9,7 +9,6 @@ import { resetCart } from "../redux/reducer/cartReducer";
 import { responseToast } from "../utils/features";
 import { loadRazorpayScript } from "../utils/loadRazorpay";
 import type { newOrderRequestType } from "../types/types";
-import type { cartReducerInitialStateTypes, userReducerInitialStateTypes } from "../types/user-reducer";
 import type { RootState } from "../redux/store";
 
 declare global {

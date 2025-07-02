@@ -13,7 +13,7 @@ type CartitemsProps={
 };
 
 const Cartitems = ({cartItems, decrementHandler, incrementHandler, removeCartItemHandler}:CartitemsProps) => {
-  const {productId, name, price , photo , stock , quantity }=cartItems;
+  const {productId, name, price , photo , quantity }=cartItems;
 
   const dispatch = useDispatch();
 

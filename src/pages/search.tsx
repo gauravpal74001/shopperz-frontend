@@ -3,17 +3,19 @@ import Productcard from "../components/product-card"
 import { useCategoriesQuery, useSearchProductsQuery } from "../redux/api/product-api";
 import toast from "react-hot-toast";
 import type { cartItems, CustomError } from "../types/types";
-import { server } from "../redux/store";
 import Skeleton from "../components/skeleton";
 import { useDispatch } from "react-redux";
-import { addToCart, cartReducer } from "../redux/reducer/cartReducer";
+import { addToCart } from "../redux/reducer/cartReducer";
+import { useSearchParams} from "react-router-dom";
 
 const Search = () => {
+
+  const searchParams=useSearchParams()[0];
   
   const [search, setearch]=useState("");
   const [sort , setsort]=useState("");
   const [maxprice, setmaxprice]=useState(100000);
-  const [category, setcategory]=useState("");  
+  const [category, setcategory]=useState(searchParams.get("category") || "");  
   const [page,setpage]=useState(1);
 
   const {data:dataCategories} =useCategoriesQuery('');
@@ -79,7 +81,7 @@ const Search = () => {
              productId={i._id}
              name={i.name}
              price={i.price}
-             photo={`${server}/${i.photo}`}
+             photo={i.photos[0].url}
              stock={i.stock}
              handler={cartHandler}
               />)

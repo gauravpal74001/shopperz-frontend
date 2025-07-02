@@ -16,10 +16,17 @@ export interface UserResponse{
 export interface Product{
      name:string,
      price:number,
-     photo:string,
+     photos:[
+          { 
+               public_id:string,
+               url:string
+          }
+     ]
      category:string,
      stock:number,
-     _id:string
+     _id:string, 
+     ratings:number,
+     no_of_reviews:number
 };
 
 export interface ProductResponse{
@@ -277,4 +284,32 @@ export type lineChartResponse ={
         revenue:number[],
         discount:number[]
      }
+};
+export type Review ={
+     user:{
+          name:string,
+          photo:string,
+     },
+     ratings:number, 
+     comment:string,
+     product_id:string,
+     _id:string,
+     user_id:string, 
+     createdAt:string
+}
+export type ReviewResponse ={
+     success:boolean,
+     reviews:Review[]
+};
+
+export type createReviewRequest ={
+     product_id:string,
+     user_id:string,
+     comment:string,
+     ratings:number
+};
+
+export type deleteReviewRequest ={
+     product_id:string,
+     user_id:string
 };

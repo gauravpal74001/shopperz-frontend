@@ -1,7 +1,6 @@
 import { FaTrash } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import AdminSidebar from "../../../components/admin/AdminSidebar";
-import { useState } from "react";
 import type { Order, orderItems} from "../../../types/types"; 
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -33,13 +32,12 @@ const defaultOrder: Order ={
 };
 
 const TransactionManagement = () => {
-  const [order, setOrder] = useState<Order>(defaultOrder);
 
   const {user}= useSelector((state:{userReducer:userReducerInitialStateTypes})=>state.userReducer);
   const {id}=useParams();
   const navigate=useNavigate();
 
-  const {data  , isLoading  , isError}=useOrderDetailsQuery(id!);
+  const {data  , isError}=useOrderDetailsQuery(id!);
   
   if(isError){
     return <Navigate to= {`/404`}/>;
@@ -64,7 +62,7 @@ const TransactionManagement = () => {
     responseToast(res, navigate, "/admin/transaction");
   };
 
-  const {shippingCharges, tax, discount, totalAmount, status , orderItems, subTotal, shippingInfo :{address, city, state, country, pinCode}, user:{name}} =data?.order || defaultOrder;
+  const {shippingCharges, tax, discount, totalAmount, status , subTotal, shippingInfo :{address, city, state, country, pinCode}} =data?.order || defaultOrder;
 
   return (
     <div className="admin-container">

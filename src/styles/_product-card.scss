@@ -77,8 +77,8 @@
     transition: opacity 0.3s ease;
     @include flex(row, center, center, 1rem);
     
-    button {
-      @include square(3.5rem);
+    button , a{
+      @include square(3rem);
       border: none;
       border-radius: 50%;
       background-color: white;
@@ -98,7 +98,7 @@
       }
       
       svg {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         transition: transform 0.3s ease;
       }
     }

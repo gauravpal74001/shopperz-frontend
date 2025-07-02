@@ -10,7 +10,6 @@ import type { RootState } from "../../redux/store";
 import { useGetDashboardDataQuery } from "../../redux/api/dashboard-api";
 import toast from "react-hot-toast";
 import type { CustomError } from "../../types/types";
-import Loader from "../../components/admin/Loader";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import Skeleton from "../../components/skeleton";
 

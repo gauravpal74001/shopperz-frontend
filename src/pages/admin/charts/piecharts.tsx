@@ -9,9 +9,9 @@ import ErrorBoundary from "../../../components/ErrorBoundary";
 
 const PieCharts = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
-  const { data, isLoading, isError, error } = useGetPieChartDataQuery(user?._id!);
+  const { data , isError , error } = useGetPieChartDataQuery(user?._id!);
 
-  
+
 
   if (isError) {
     const errorMessage = (error as CustomError).data?.message || "Error fetching data";

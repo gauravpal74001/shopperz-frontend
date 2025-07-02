@@ -17,7 +17,7 @@ const Cart = () => {
 
  
 
-  const { cartitems , loading , tax, shippingCharges, discount, total, shippingInfo , subtotal } = 
+  const { cartitems , tax, shippingCharges, discount, total, subtotal } = 
   useSelector((state : {cartReducer : cartReducerInitialStateTypes})=>state.cartReducer);
 
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const Cart = () => {
             dispatch(applyCoupon(res.data.discount));
             setIsvalidcouponcode(true);
             dispatch(calculateTotal());
-         }).catch((e)=>{
+         }).catch(()=>{
           dispatch(applyCoupon(0));
            setIsvalidcouponcode(false);
            dispatch(calculateTotal());
