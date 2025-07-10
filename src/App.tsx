@@ -6,7 +6,7 @@ import Login from "./pages/login.tsx";
 import Order from "./pages/order.tsx";
 import { Toaster } from "react-hot-toast";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase.ts";
+import { auth } from "./utils/firebase.ts"; 
 import { getUser } from "./redux/api/user-api.ts";
 import { userExist, userNotExist } from "./redux/reducer/userReducer.ts";
 import { useDispatch, useSelector } from "react-redux";
