@@ -1,103 +1,81 @@
-# MERN E-commerce 2025 🛍️
+# E-Commerce Frontend 🛒
 
-A full-featured E-commerce platform built with the MERN stack (MongoDB, Express.js, React.js, Node.js) with TypeScript integration.
+This is the frontend application for a full-featured e-commerce platform built with React.js and TypeScript. It integrates with a MERN stack backend to provide a seamless shopping experience.
 
 ## Features 🚀
 
-### User Features
-- **Authentication & Authorization**
-  - Google OAuth integration
-  - Role-based access control (Admin & User)
-  - Secure password management
+### User Interface
+- Responsive design with SCSS styling
+- Product browsing with search and filters
+- Shopping cart and wishlist management
+- Secure checkout and order tracking
+- User authentication via Google OAuth
 
-- **Product Management**
-  - Browse products with category filters
-  - Search functionality
-  - Product details with images
-  - Stock tracking
+### Admin Dashboard
+- Real-time analytics with Chart.js visualizations (bar, line, pie charts)
+- Management interfaces for products, orders, users, and inventory
+- Coupon and category management
 
-- **Shopping Experience**
-  - Cart management
-  - Wishlist functionality
-  - Order tracking
-  - Secure checkout process
+### Technical Highlights
+- **State Management:** Redux Toolkit and RTK Query for efficient data handling
+- **Notifications:** React Hot Toast
+- **Icons:** React Icons
+- **Build Tool:** Vite for fast development
+- **Linting:** ESLint with TypeScript support
 
-- **Payment Integration**
-  - Razorpay integration
-  - Secure payment processing
-  - Order confirmation
+## Dependencies 📦
 
-### Admin Dashboard 📊
-- **Analytics & Reporting**
-  - Revenue tracking
-  - Sales analytics
-  - User statistics
-  - Inventory management
+### Production Dependencies
+- `@reduxjs/toolkit`: ^2.8.2
+- `6pp`: ^1.3.10
+- `axios`: ^1.10.0
+- `chart.js`: ^4.5.0
+- `firebase`: ^11.9.1
+- `framer-motion`: ^12.22.0
+- `moment`: ^2.30.1
+- `react`: ^18.2.0
+- `react-chartjs-2`: ^5.3.0
+- `react-dom`: ^18.2.0
+- `react-hot-toast`: ^2.5.2
+- `react-icons`: ^5.5.0
+- `react-redux`: ^9.2.0
+- `react-router-dom`: ^7.6.2
+- `react-table`: ^7.8.0
+- `sass`: ^1.89.2
 
-- **Data Visualization**
-  - Bar charts
-  - Line charts
-  - Pie charts
-  - Real-time data updates
-
-- **Management Tools**
-  - Product management
-  - Order management
-  - User management
-  - Transaction tracking
-
-- **Additional Features**
-  - Coupon management
-  - Stock monitoring
-  - Category management
-
-## Technical Stack 💻
-
-### Frontend
-- React.js with TypeScript
-- Redux Toolkit for state management
-- RTK Query for API calls
-- SCSS for styling
-- Chart.js for data visualization
-- React Icons
-- React Hot Toast for notifications
-
-### Backend
-- Node.js & Express.js with TypeScript
-- MongoDB with Mongoose
-- Firebase Authentication
-- Multer for file uploads
-- Server-side caching
-- Type-safe API responses
+### Dev Dependencies
+- `@eslint/js`: ^9.25.0
+- `@types/react`: ^18.2.0
+- `@types/react-dom`: ^18.2.0
+- `@types/react-table`: ^7.7.20
+- `@vitejs/plugin-react-swc`: ^3.9.0
+- `eslint`: ^9.25.0
+- `eslint-plugin-react-hooks`: ^5.2.0
+- `eslint-plugin-react-refresh`: ^0.4.19
+- `globals`: ^16.0.0
+- `typescript`: ~5.8.3
+- `typescript-eslint`: ^8.30.1
+- `vite`: ^6.3.5
 
 ## Getting Started 🏁
 
 ### Prerequisites
 - Node.js (v14 or higher)
-- MongoDB
-- Firebase account
-- Razorpay account (for payments)
+- Backend server running (see main project README)
 
 ### Installation
 
-1. Clone the repository
-```bash
-git clone https://github.com/yourusername/MERN-ECOMMERCE-2025.git
-```
-
-2. Install dependencies for backend
-```bash
-cd e-commerce-backend
-npm install
-```
-
-3. Install dependencies for frontend
+1. Navigate to this directory:
 ```bash
 cd e-commerce-frontend
+```
+
+2. Install dependencies:
+```bash
 npm install
 ```
 
-4. Set up environment variables
+3. Set up environment variables in `.env`:
 ```bash
 # Backend .env
 PORT=
@@ -180,4 +158,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Designed for scalability and performance
 
 ---
-Made with ❤️ by [Gaurav Pal] 
+Made with ❤️ by [Gaurav Pal]
